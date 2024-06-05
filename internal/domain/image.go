@@ -7,15 +7,25 @@ import (
 )
 
 type Image struct {
-	ID         uint `gorm:"primarykey"`
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-	DeletedAt  gorm.DeletedAt `gorm:"index"`
-	Title      string         `gorm:"type:varchar(255);not null" json:"title"`
-	URL        string         `gorm:"type:text;not null" json:"url"`
-	UploadedAt time.Time      `gorm:"type:timestamp;not null;default:current_timestamp" json:"uploaded_at"`
+	ID        uint `gorm:"primarykey"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+	UserID    uint
+	Category  string
+	Title     string
+	Filename  string
+	Size      int64
+	URL       string
 }
 
 type ImageUploadRequest struct {
-	Title string `form:"title"`
+	UserID   string `form:"user_id"`
+	Category string `form:"category"`
+	Title    string `form:"title"`
+}
+
+type ImageUploadResponse struct {
+	Title string `json:"title"`
+	URL   string `json:"url"`
 }

@@ -5,6 +5,7 @@ import (
 
 	"github.com/flambra/account/internal/image"
 	"github.com/flambra/account/internal/middleware"
+	"github.com/flambra/account/internal/video"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -19,5 +20,7 @@ func InitializeRoutes(app *fiber.App) {
 
 	// Image
 	app.Post("/image/upload", middleware.Auth, image.Upload)
-	
+
+	// Video
+	app.Post("/video/upload", middleware.Auth, video.Upload)
 }
